@@ -2,37 +2,12 @@ def gv
 
 pipeline {
     agent any
+
     stages {
-        stage("init") {
+        stage('Checkout Code') {
             steps {
-                script {
-                    gv = load "script.groovy"
-                }
+                git branch: 'main', url: 'https://github.com/umamahesh571/java-maven-app.git'
             }
         }
-        stage("build jar") {
-            steps {
-                script {
-                    echo "building jar"
-                    //gv.buildJar()
-                }
-            }
-        }
-        stage("build image") {
-            steps {
-                script {
-                    echo "building image"
-                    //gv.buildImage()
-                }
-            }
-        }
-        stage("deploy") {
-            steps {
-                script {
-                    echo "deploying"
-                    //gv.deployApp()
-                }
-            }
-        }
-    }   
+    }
 }
